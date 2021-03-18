@@ -173,6 +173,7 @@ public class TomcatServletWebServerFactory extends AbstractServletWebServerFacto
 
 	@Override
 	public WebServer getWebServer(ServletContextInitializer... initializers) {
+		// 初始化webServer 并启动
 		if (this.disableMBeanRegistry) {
 			Registry.disableRegistry();
 		}

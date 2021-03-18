@@ -267,6 +267,7 @@ public class SpringApplication {
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public SpringApplication(ResourceLoader resourceLoader, Class<?>... primarySources) {
+        // 初始化过程
         this.resourceLoader = resourceLoader;
         Assert.notNull(primarySources, "PrimarySources must not be null");
         this.primarySources = new LinkedHashSet<>(Arrays.asList(primarySources));
@@ -298,7 +299,7 @@ public class SpringApplication {
      * @return a running {@link ApplicationContext}
      */
     public ConfigurableApplicationContext run(String... args) {
-
+        // 主要执行过程
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         ConfigurableApplicationContext context = null;
@@ -315,6 +316,7 @@ public class SpringApplication {
             exceptionReporters = getSpringFactoriesInstances(SpringBootExceptionReporter.class,
                     new Class[]{ConfigurableApplicationContext.class}, context);
             prepareContext(context, environment, listeners, applicationArguments, printedBanner);
+            // 启动tomcat
             refreshContext(context);
             afterRefresh(context, applicationArguments);
             stopWatch.stop();
@@ -1263,6 +1265,7 @@ public class SpringApplication {
      * @return the running {@link ApplicationContext}
      */
     public static ConfigurableApplicationContext run(Class<?>[] primarySources, String[] args) {
+        // 初始化SpringApplication 并执行 run
         return new SpringApplication(primarySources).run(args);
     }
 

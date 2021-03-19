@@ -118,7 +118,6 @@ public class ServletWebServerApplicationContext extends GenericWebApplicationCon
 	/**
 	 * Create a new {@link ServletWebServerApplicationContext} with the given
 	 * {@code DefaultListableBeanFactory}.
-	 *
 	 * @param beanFactory the DefaultListableBeanFactory instance to use for this context
 	 */
 	public ServletWebServerApplicationContext(DefaultListableBeanFactory beanFactory) {
@@ -141,7 +140,8 @@ public class ServletWebServerApplicationContext extends GenericWebApplicationCon
 	public final void refresh() throws BeansException, IllegalStateException {
 		try {
 			super.refresh();
-		} catch (RuntimeException ex) {
+		}
+		catch (RuntimeException ex) {
 			stopAndReleaseWebServer();
 			throw ex;
 		}
@@ -153,7 +153,8 @@ public class ServletWebServerApplicationContext extends GenericWebApplicationCon
 		try {
 			// 创建web服务器
 			createWebServer();
-		} catch (Throwable ex) {
+		}
+		catch (Throwable ex) {
 			throw new ApplicationContextException("Unable to start web server", ex);
 		}
 	}
@@ -179,10 +180,12 @@ public class ServletWebServerApplicationContext extends GenericWebApplicationCon
 		if (webServer == null && servletContext == null) {
 			ServletWebServerFactory factory = getWebServerFactory();
 			this.webServer = factory.getWebServer(getSelfInitializer());
-		} else if (servletContext != null) {
+		}
+		else if (servletContext != null) {
 			try {
 				getSelfInitializer().onStartup(servletContext);
-			} catch (ServletException ex) {
+			}
+			catch (ServletException ex) {
 				throw new ApplicationContextException("Cannot initialize servlet context", ex);
 			}
 		}
@@ -193,7 +196,6 @@ public class ServletWebServerApplicationContext extends GenericWebApplicationCon
 	 * Returns the {@link ServletWebServerFactory} that should be used to create the
 	 * embedded {@link WebServer}. By default this method searches for a suitable bean in
 	 * the context itself.
-	 *
 	 * @return a {@link ServletWebServerFactory} (never {@code null})
 	 */
 	protected ServletWebServerFactory getWebServerFactory() {
@@ -213,7 +215,6 @@ public class ServletWebServerApplicationContext extends GenericWebApplicationCon
 	/**
 	 * Returns the {@link ServletContextInitializer} that will be used to complete the
 	 * setup of this {@link WebApplicationContext}.
-	 *
 	 * @return the self initializer
 	 * @see #prepareWebApplicationContext(ServletContext)
 	 */
@@ -248,7 +249,6 @@ public class ServletWebServerApplicationContext extends GenericWebApplicationCon
 	 * web server. By default this method will first attempt to find
 	 * {@link ServletContextInitializer}, {@link Servlet}, {@link Filter} and certain
 	 * {@link EventListener} beans.
-	 *
 	 * @return the servlet initializer beans
 	 */
 	protected Collection<ServletContextInitializer> getServletContextInitializerBeans() {
@@ -260,7 +260,6 @@ public class ServletWebServerApplicationContext extends GenericWebApplicationCon
 	 * {@link ServletContext}. This method is usually called from
 	 * {@link ServletContextInitializer#onStartup(ServletContext)} and is similar to the
 	 * functionality usually provided by a {@link ContextLoaderListener}.
-	 *
 	 * @param servletContext the operational servlet context
 	 */
 	protected void prepareWebApplicationContext(ServletContext servletContext) {
@@ -285,7 +284,8 @@ public class ServletWebServerApplicationContext extends GenericWebApplicationCon
 				long elapsedTime = System.currentTimeMillis() - getStartupDate();
 				logger.info("Root WebApplicationContext: initialization completed in " + elapsedTime + " ms");
 			}
-		} catch (RuntimeException | Error ex) {
+		}
+		catch (RuntimeException | Error ex) {
 			logger.error("Context initialization failed", ex);
 			servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, ex);
 			throw ex;
@@ -306,7 +306,8 @@ public class ServletWebServerApplicationContext extends GenericWebApplicationCon
 			try {
 				webServer.stop();
 				this.webServer = null;
-			} catch (Exception ex) {
+			}
+			catch (Exception ex) {
 				throw new IllegalStateException(ex);
 			}
 		}
@@ -343,7 +344,6 @@ public class ServletWebServerApplicationContext extends GenericWebApplicationCon
 	/**
 	 * Returns the {@link WebServer} that was created by the context or {@code null} if
 	 * the server has not yet been created.
-	 *
 	 * @return the embedded web server
 	 */
 	@Override

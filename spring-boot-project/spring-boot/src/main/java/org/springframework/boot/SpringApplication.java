@@ -314,7 +314,7 @@ public class SpringApplication {
 			exceptionReporters = getSpringFactoriesInstances(SpringBootExceptionReporter.class,
 					new Class[] { ConfigurableApplicationContext.class }, context);
 			prepareContext(context, environment, listeners, applicationArguments, printedBanner);
-			// 启动tomcat
+			// 刷新上下文
 			refreshContext(context);
 			afterRefresh(context, applicationArguments);
 			stopWatch.stop();

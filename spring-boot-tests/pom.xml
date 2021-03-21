@@ -19,6 +19,7 @@
 		<!-- Deployment tests are slow so don't include by default -->
 		<module>spring-boot-smoke-tests-invoker</module>
 		<module>spring-boot-integration-tests</module>
+		<module>SpringbootStartTest</module>
 	</modules>
 	<profiles>
 		<!-- M2E profile to allow easy import into Eclipse -->

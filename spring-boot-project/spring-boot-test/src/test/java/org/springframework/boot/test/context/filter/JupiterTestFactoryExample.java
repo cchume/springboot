@@ -29,6 +29,7 @@ class JupiterTestFactoryExample {
 	Collection<DynamicNode> testFactory() {
 		return Arrays.asList(DynamicTest.dynamicTest("Some dynamic test", () -> {
 			// Test
+			
 		}));
 	}
 

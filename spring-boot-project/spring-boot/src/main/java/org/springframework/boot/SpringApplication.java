@@ -268,9 +268,13 @@ public class SpringApplication {
 		// 初始化过程
 		this.resourceLoader = resourceLoader;
 		Assert.notNull(primarySources, "PrimarySources must not be null");
+		// primarySources 主启动类
 		this.primarySources = new LinkedHashSet<>(Arrays.asList(primarySources));
+		// webApplicationType Servlet
 		this.webApplicationType = WebApplicationType.deduceFromClasspath();
+		// 从spring.factories 取出 初始化器
 		setInitializers((Collection) getSpringFactoriesInstances(ApplicationContextInitializer.class));
+		// 设置监听器
 		setListeners((Collection) getSpringFactoriesInstances(ApplicationListener.class));
 		this.mainApplicationClass = deduceMainApplicationClass();
 	}
@@ -303,10 +307,14 @@ public class SpringApplication {
 		ConfigurableApplicationContext context = null;
 		Collection<SpringBootExceptionReporter> exceptionReporters = new ArrayList<>();
 		configureHeadlessProperty();
+		//
 		SpringApplicationRunListeners listeners = getRunListeners(args);
+		// 启动监听器
 		listeners.starting();
 		try {
+			// 包装args
 			ApplicationArguments applicationArguments = new DefaultApplicationArguments(args);
+			// 准备环境 
 			ConfigurableEnvironment environment = prepareEnvironment(listeners, applicationArguments);
 			configureIgnoreBeanInfo(environment);
 			Banner printedBanner = printBanner(environment);
@@ -315,7 +323,7 @@ public class SpringApplication {
 			exceptionReporters = getSpringFactoriesInstances(SpringBootExceptionReporter.class,
 					new Class[] { ConfigurableApplicationContext.class }, context);
 			prepareContext(context, environment, listeners, applicationArguments, printedBanner);
-			// 刷新上下文
+			// 创建ioc容器, 并启动tomcat
 			refreshContext(context);
 			afterRefresh(context, applicationArguments);
 			stopWatch.stop();

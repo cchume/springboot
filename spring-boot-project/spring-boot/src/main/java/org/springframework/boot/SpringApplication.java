@@ -314,16 +314,18 @@ public class SpringApplication {
 		try {
 			// 包装args
 			ApplicationArguments applicationArguments = new DefaultApplicationArguments(args);
-			// 准备环境 
+			// 准备环境
 			ConfigurableEnvironment environment = prepareEnvironment(listeners, applicationArguments);
+			// 忽略不需要配置bean
 			configureIgnoreBeanInfo(environment);
 			Banner printedBanner = printBanner(environment);
-			// 创建引导上下文
+			// 创建引导上下文  AnnotationConfigServletWebServerApplicationContext
 			context = createApplicationContext();
 			exceptionReporters = getSpringFactoriesInstances(SpringBootExceptionReporter.class,
 					new Class[] { ConfigurableApplicationContext.class }, context);
+			// 向上下文对象中设置一些列的属性值
 			prepareContext(context, environment, listeners, applicationArguments, printedBanner);
-			// 创建ioc容器, 并启动tomcat
+			// 创建ioc容器 -- 调用spring --> refresh(), 并启动tomcat
 			refreshContext(context);
 			afterRefresh(context, applicationArguments);
 			stopWatch.stop();
@@ -348,6 +350,7 @@ public class SpringApplication {
 		return context;
 	}
 
+	// 读取系统环境变量
 	private ConfigurableEnvironment prepareEnvironment(SpringApplicationRunListeners listeners,
 			ApplicationArguments applicationArguments) {
 		// Create and configure the environment
@@ -379,13 +382,16 @@ public class SpringApplication {
 			SpringApplicationRunListeners listeners, ApplicationArguments applicationArguments, Banner printedBanner) {
 		context.setEnvironment(environment);
 		postProcessApplicationContext(context);
+		// 初始化 赋值
 		applyInitializers(context);
+		// 触发监听器
 		listeners.contextPrepared(context);
 		if (this.logStartupInfo) {
 			logStartupInfo(context.getParent() == null);
 			logStartupProfileInfo(context);
 		}
 		// Add boot specific singleton beans
+		// DefaultListableBeanFactory
 		ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
 		beanFactory.registerSingleton("springApplicationArguments", applicationArguments);
 		if (printedBanner != null) {
@@ -401,7 +407,9 @@ public class SpringApplication {
 		// Load the sources
 		Set<Object> sources = getAllSources();
 		Assert.notEmpty(sources, "Sources must not be empty");
+		// 很重要 --> 解析所有类注解 添加到 BeanDefinitionLoader
 		load(context, sources.toArray(new Object[0]));
+
 		listeners.contextLoaded(context);
 	}
 
@@ -619,6 +627,7 @@ public class SpringApplication {
 			}
 		}
 		if (this.addConversionService) {
+			// 转换服务 类型转换
 			context.getBeanFactory().setConversionService(ApplicationConversionService.getSharedInstance());
 		}
 	}

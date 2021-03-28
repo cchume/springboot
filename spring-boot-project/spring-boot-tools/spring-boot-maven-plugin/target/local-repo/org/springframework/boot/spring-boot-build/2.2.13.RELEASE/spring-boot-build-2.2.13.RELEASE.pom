@@ -12,6 +12,7 @@
 	<properties>
 		<revision>2.2.13.RELEASE</revision>
 		<main.basedir>${basedir}</main.basedir>
+		<disable.checks>true</disable.checks>
 	</properties>
 	<!-- Most elements are in profiles so they are stripped out during maven-flatten -->
 	<profiles>
@@ -150,6 +151,14 @@
 		</profile>
 	</profiles>
 	<repositories>
+<!--		<repository>-->
+<!--			<id>ali</id>-->
+<!--			<name>ali</name>-->
+<!--			<url>https://maven.aliyun.com/repository/public</url>-->
+<!--			<snapshots>-->
+<!--				<enabled>false</enabled>-->
+<!--			</snapshots>-->
+<!--		</repository>-->
 		<repository>
 			<id>cchume</id>
 			<name>cchume maven</name>

@@ -90,6 +90,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  * @see ServletWebServerFactory
  * @since 2.0.0
  */
+@SuppressWarnings("ALL")
 public class ServletWebServerApplicationContext extends GenericWebApplicationContext
 		implements ConfigurableWebServerApplicationContext {
 

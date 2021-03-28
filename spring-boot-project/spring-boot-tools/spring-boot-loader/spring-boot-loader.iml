@@ -12,6 +12,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/src/test/resources/jars" />
+      <excludeFolder url="file://$MODULE_DIR$/src/test/resources/more-jars" />
+      <excludeFolder url="file://$MODULE_DIR$/src/test/resources/nested-jars" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

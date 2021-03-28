@@ -2,7 +2,7 @@
   "homepage": "https://projects.spring.io/spring-boot/",
   "version": "2.2.13",
   "license": "Apache 2.0",
-  "hash": "f09e0ba3cc4a3f9e6f2fce37340fb9110599ffbe3e8b0505763f158699ab71e3",
+  "hash": "b17e1505cdbc00f241044c3b9cd5d3ad9ccfa9026a13be29e92b4c07ae1dbf9d",
   "url": "https://repo.spring.io/release/org/springframework/boot/spring-boot-cli/2.2.13.RELEASE/spring-boot-cli-2.2.13.RELEASE-bin.zip",
   "extract_dir": "spring-2.2.13.RELEASE",
   "bin": "bin\\spring.bat",

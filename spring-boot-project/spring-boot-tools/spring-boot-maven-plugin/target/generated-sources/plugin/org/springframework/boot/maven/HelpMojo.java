@@ -1,5 +1,5 @@
-
 package org.springframework.boot.maven;
+
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;

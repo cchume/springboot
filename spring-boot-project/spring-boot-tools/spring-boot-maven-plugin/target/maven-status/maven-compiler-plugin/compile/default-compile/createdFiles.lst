@@ -22,6 +22,7 @@ org\springframework\boot\maven\AbstractDependencyFilterMojo.class
 org\springframework\boot\maven\StartMojo$CreateJmxConnector.class
 org\springframework\boot\maven\ExcludeFilter.class
 org\springframework\boot\maven\EnvVariables.class
+HelpMojo.class
 org\springframework\boot\maven\RunArguments.class
 org\springframework\boot\maven\ArtifactsLibraries.class
 org\springframework\boot\maven\BuildInfoMojo.class

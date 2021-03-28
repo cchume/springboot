@@ -120,8 +120,7 @@ class BeanDefinitionLoader {
 
 	/**
 	 * Load the sources into the reader.
-	 * @return the number of loaded beans
-	 *  解析类注解
+	 * @return the number of loaded beans 解析类注解
 	 */
 	int load() {
 		int count = 0;
@@ -155,7 +154,7 @@ class BeanDefinitionLoader {
 			load(loader);
 		}
 		if (isComponent(source)) {
-			// annotatedReader  bean定义BeanDefinitionLoader
+			// annotatedReader bean定义BeanDefinitionLoader
 			this.annotatedReader.register(source);
 			return 1;
 		}
